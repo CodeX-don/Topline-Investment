@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   Toplin Investments — Design tokens
+   Source: Design Brief §3, TDD Appendix A & B
+   ========================================================================== */
+
+:root {
+  /* Brand */
+  --color-primary: #e31e24;
+  --color-primary-hover: #c41a1f;
+
+  /* Neutral */
+  --color-black: #111111;
+  --color-white: #ffffff;
+  --color-gray-light: #f4f4f4;
+  --color-gray: #888888;
+  --color-gray-dark: #333333;
+  --color-border: #e5e5e5;
+  --color-input: #f9f9f9;
+
+  /* Functional */
+  --color-whatsapp: #25d366;
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+
+  /* Typography */
+  --font-heading: var(--font-montserrat), 'Montserrat', sans-serif;
+  --font-body: var(--font-open-sans), 'Open Sans', sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white font-body text-base text-concrete-dark antialiased;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-bold text-black;
+    line-height: 1.15;
+  }
+
+  /* Strength and structure — Design Brief §3.2 */
+  h1,
+  h2 {
+    text-transform: uppercase;
+  }
+
+  ::selection {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+
+  /* Honour reduced-motion preferences — TDD §18.2 */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Keyboard-only skip link — TDD §18.2 */
+  .skip-link {
+    @apply fixed left-4 top-4 z-[1100] -translate-y-24 rounded-btn bg-primary px-4 py-3 text-sm font-semibold text-white transition-transform;
+  }
+
+  .skip-link:focus {
+    @apply translate-y-0;
+  }
+}
